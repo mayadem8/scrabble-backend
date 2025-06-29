@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+ "scripts": {
+  "start": "concurrently \"node server/server.js\" \"node dist/index.js\"",
+  "build": "tsc",
+  "dev:server": "node server/server.js",
+  "dev:api": "nodemon src/index.ts",
+  "dev": "concurrently \"npm run dev:server\" \"npm run dev:api\""
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^6.9.0",
+    "axios": "^1.10.0",
+    "concurrently": "^9.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "prisma": "^6.9.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

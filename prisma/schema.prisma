@@ -1,0 +1,36 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  games     Game[]
+}
+
+model Game {
+  id         String   @id @default(cuid())
+  players    User[] 
+  result     String?
+  createdAt  DateTime @default(now())
+}
+model UserProfile {
+  id          String   @id @default(cuid())
+  clerkId     String   @unique // Link to Clerk user ID
+  username    String
+  profilePic  String?  // Optional profile picture URL
+  email       String?  // <-- Add this line
+  dateJoined  DateTime @default(now())
+  gamesPlayed Int      @default(0)
+  gamesWon    Int      @default(0)
+  gamesLost   Int      @default(0)
+}
